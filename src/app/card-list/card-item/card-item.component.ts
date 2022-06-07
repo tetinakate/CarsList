@@ -1,14 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { HttpService} from '../../http.service';
 
 @Component({
     selector: 'app-card-item',
     templateUrl: './card-item.component.html',
     styleUrls: ['./card-item.component.scss'],
+    providers: [HttpService]
 })
-export class CardItemComponent implements OnInit {
+export class CardItemComponent {
     @Input() car: any;
 
-    constructor() {}
+    constructor(private httpService: HttpService) {}
 
-    ngOnInit(): void {}
+    handleDeleteClick(id: string){
+        this.httpService.deleteData(id).subscribe()
+
+        // this.httpService.getData().subscribe((res: any) => this.response = res)  
+    }
 }

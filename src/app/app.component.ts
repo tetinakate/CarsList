@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpService} from './http.service';
 
 /* TODO: implement me */
 type Model = {
@@ -20,18 +20,17 @@ export interface ICars {
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    providers: [HttpService]
 })
 export class AppComponent {
     title = 'cars-project';
     response: any;
 
-    constructor(private http: HttpClient) {}
+    constructor(private httpService: HttpService) {}
 
     ngOnInit(): void {
-        this.http
-            .get('http://localhost:3000/cars/')
-            .subscribe((response) => {
-                this.response = response;
-            });
+        this.httpService.getData().subscribe((response: any) => {
+            this.response = response;
+        });
     }
 }
