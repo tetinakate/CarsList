@@ -9,10 +9,13 @@ import { HttpService} from '../../http.service';
 })
 export class CardItemComponent {
     @Input() car: any;
+    @Input() response: any;
 
     constructor(private httpService: HttpService) {}
 
     handleDeleteClick(id: string){
+        console.log(this.response)
+        this.response = this.response.filter((res: any) => res.id != id)
         this.httpService.deleteData(id).subscribe()
 
         // this.httpService.getData().subscribe((res: any) => this.response = res)  

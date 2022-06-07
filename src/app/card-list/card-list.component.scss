@@ -21,3 +21,34 @@
         }
     }
 }
+.card {
+    .card-body {
+        .card-title {
+            font-weight: 700;
+            color: #152536;
+        }
+    }
+
+    .card-img-top {
+        height: 192px;
+        object-fit: cover;
+    }
+
+    .list-group-featured {
+        list-style-type: none;
+        padding-left: 1rem;
+        font-weight: 400;
+        font-size: 14px;
+
+        li {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .label {
+            color: #6C757D;
+            width: 45px;
+            margin-right: 8px;
+        }
+    }
+}
