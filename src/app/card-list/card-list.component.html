@@ -1,0 +1,27 @@
+<div class="container-xl container-md">
+  <div class="row">
+    <div class="col">
+      <h1>Cars List</h1>
+      <div class="divider pt-5"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <!-- TODO: fix me -->
+      <!-- <app-search></app-search> -->
+      <input type="search" class="form-control" id="search" placeholder="Search..." [(ngModel)]="searchText"
+        autocomplete="off" />
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-8 text-end">
+      <button type="button" class="btn btn-success btn-add-car">Add</button>
+    </div>
+  </div>
+
+  <div class="row pt-5 card-group">
+    <app-card-item *ngFor="let car of response | appFilter: searchText" [car]="car"
+      class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+    </app-card-item>
+  </div>
+</div>

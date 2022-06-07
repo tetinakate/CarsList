@@ -1,0 +1,24 @@
+<div class="card mb-2">
+    <img src="http://localhost:3000/images/{{car.image}}" class="card-img-top" alt="ffff">
+    <div class="card-body">
+        <h5 class="card-title">{{car.name}}</h5>
+    </div>
+    <ul class="list-group-featured m-0">
+        <li class="mb-1">
+            <div class="label">Model:</div>
+            <div>{{car.model.name}}</div>
+        </li>
+        <li class="mb-1">
+            <div class="label">Color:</div>
+            <div>{{car.color}}</div>
+        </li>
+        <li class="mb-1">
+            <div class="label">Year:</div>
+            <div>{{car.year}}</div>
+        </li>
+    </ul>
+    <div class="card-body">
+        <button type="button" class="btn btn-secondary me-3">Update</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+    </div>
+</div>

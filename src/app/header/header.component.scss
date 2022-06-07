@@ -1,0 +1,15 @@
+.container-fluid {
+    background-color: #052C65;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .container-xl {
+        &.header {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 20px;
+        }
+    }
+}

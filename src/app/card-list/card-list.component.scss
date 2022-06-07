@@ -1,0 +1,23 @@
+.container-xl {
+    .row {
+        h1{
+            font-weight: 700;
+            font-size: 40px;
+            letter-spacing: -0.02em;
+            margin: 0;
+            padding: 32px 0;
+        }
+
+        .divider{
+            border-top: 1px solid #CED4DA;
+        }
+
+        .btn {
+            &.btn-success {
+                &.btn-add-car{
+                    padding: 6px 34px;
+                }
+            }
+        }
+    }
+}

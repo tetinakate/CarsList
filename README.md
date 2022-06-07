@@ -1,27 +1,38 @@
 # CarsProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+Frontend test task.
 
-## Development server
+## Design
+https://www.figma.com/file/rKRcZQCvWPidfNm1ZSuSX4/Cars-Project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+```bash
+$ npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Running the app
 
-## Build
+```bash
+$ npm start
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+App running on [http://localhost:4200](http://localhost:4200)
 
-## Running unit tests
+## Start server
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Clone a [project](https://github.com/Komaricus/nestjs-cars-project)
+* Installation
+```bash
+$ npm install
+```
+* Running the server
+```bash
+$ npm run start
+```
+* App running on [http://localhost:3000](http://localhost:3000)
 
-## Running end-to-end tests
+### Swagger spec
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Swagger spec available on [http://localhost:3000/api](http://localhost:3000/api)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
