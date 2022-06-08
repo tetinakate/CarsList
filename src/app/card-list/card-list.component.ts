@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpService} from '../http.service';
 import { ModalService } from '../modal';
 import { Car } from '../interfaces';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-card-list',
@@ -18,12 +19,20 @@ export class CardListComponent implements OnInit {
         image: '',
     };
 
+    items = this.httpService.getData();
+
+  checkoutForm = this.formBuilder.group({
+    name: '',
+    address: ''
+  });
+
     @Input() response: any;
     searchText: string = '';
 
     constructor(
         private httpService: HttpService,
-        private modalService: ModalService
+        private modalService: ModalService,
+        private formBuilder: FormBuilder,
     ) {}
 
     ngOnInit(): void {}
@@ -45,7 +54,5 @@ export class CardListComponent implements OnInit {
     closeModal(id: string) {
         this.modalService.close(id);
     }
-    onSubmit(car: Car) {
-        this.car = car;
-    }
+
 }
