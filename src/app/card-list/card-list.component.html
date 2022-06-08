@@ -74,17 +74,25 @@
                     >
                         Delete
                     </button>
-                    <jw-modal id={{car.name}}  class="modal">
-                        <div>{{ car.name }}</div>
-                        <p>Home page text</p>
-                        <button (click)="closeModal(car.name);">Close</button>
-                        <button (click)="handleDeleteClick(car.id)">Delete</button>
-                    </jw-modal>
+                    <modal-confirm id={{car.name}} class="modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{{ car.name }}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete this car?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button (click)="closeModal(car.name);" class="btn btn-secondary">Cansel</button>
+                                    <button (click)="handleDeleteClick(car.id)" class="btn btn-primary dark-blue">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </modal-confirm>
                 </div>
             </div>
         </div>
         <!-- TODO: fix me -->
     </div>
 </div>
-
-<!-- (click)="handleDeleteClick(car.id)" -->

@@ -1,10 +1,10 @@
 /* MODAL STYLES
 -------------------------------*/
-jw-modal {
+modal-confirm {
     /* modals are hidden by default */
     display: none;
 
-    .jw-modal {
+    .modal-confirm {
         /* modal container fixed across whole screen */
         position: fixed;
         top: 0;
@@ -12,24 +12,56 @@ jw-modal {
         bottom: 0;
         left: 0;
 
-        /* z-index must be higher than .jw-modal-background */
+        /* z-index must be higher than .modal-confirm-background */
         z-index: 1000;
         
         /* enables scrolling for tall modals */
         overflow: auto;
 
-        .jw-modal-body {
-            padding: 24px;
-            margin: 30px auto;
-            width: 420px;
-            height: 180px;
-            background: #FFFFFF;
-            border: 1px solid #DEE2E6;
-            border-radius: 4px;
+        .modal-dialog {
+            .modal-confirm-body {
+                padding: 24px;
+                margin: 30px auto;
+                width: 420px;
+                height: 180px;
+                background: #FFFFFF;
+                border: 1px solid #DEE2E6;
+                border-radius: 4px;
+            }
+            .modal-header{
+                border-bottom: none;
+                padding: 24px 24px 22px;
+            }
+            .modal-footer{
+                border-top: none;
+                padding: 0 24px 24px;
+            }
+            .modal-title {
+                color: #152536;
+                font-weight: 700;
+                font-size: 24px;
+            }
+            .modal-body {
+                padding: 0 24px;
+                p {
+                    font-weight: 400;
+                    font-size: 16px;
+                    color: #000000;
+                }
+            }
+            .btn-primary{
+                &.dark-blue{
+                    background-color: #052C65;
+                    &:hover {
+                        background-color: #08387e;
+                    }
+                }
+            }
+
         }
     }
 
-    .jw-modal-background {
+    .modal-confirm-background {
         /* modal background fixed across whole screen */
         position: fixed;
         top: 0;
@@ -41,12 +73,12 @@ jw-modal {
         background-color: #000;
         opacity: 0.75;
         
-        /* z-index must be below .jw-modal and above everything else  */
+        /* z-index must be below .modal-confirm and above everything else  */
         z-index: 900;
     }
 }
 
-body.jw-modal-open {
+body.modal-confirm-open {
     /* body overflow is hidden to hide main scrollbar when modal window is open */
     overflow: hidden;
 }
