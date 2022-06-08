@@ -20,6 +20,12 @@ export class ModalService {
         modal.open();
     }
 
+    openNew(id: string) {
+        // open modal specified by id
+        const modal = this.modals.find(x => x.id === id);
+        modal.openNew();
+    }
+
     close(id: string) {
         // close modal specified by id
         const modal = this.modals.find(x => x.id === id);

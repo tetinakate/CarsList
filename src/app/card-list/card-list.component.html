@@ -21,7 +21,11 @@
         </div>
 
         <div class="col-lg-8 col-md-8 col-sm-8 text-end">
-            <button type="button" class="btn btn-success btn-add-car">
+            <button
+                type="button"
+                class="btn btn-success btn-add-car"
+                (click)="openModalNew('add-new-car')"
+            >
                 Add
             </button>
         </div>
@@ -96,3 +100,42 @@
         <!-- TODO: fix me -->
     </div>
 </div>
+
+<modal-confirm id="add-new-car" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new car</h5>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name <span class="red">*</span></label>
+                <input type="text" class="form-control" id="name" placeholder="" required autocomplete="off" >
+            </div>
+            <div class="mb-3">
+                <label for="model" class="form-label">Model <span class="red">*</span></label>
+                <select class="form-select" aria-label="Default select example" id="model">
+                    <option selected>Select model</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="color" class="form-label">Color <span class="red">*</span></label>
+                <input type="text" class="form-control" id="color" placeholder="" required autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Year <span class="red">*</span></label>
+                <input type="text" class="form-control" id="year" placeholder="" required autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image <span class="red">*</span></label>
+                <input type="file" class="form-control" id="image" required autocomplete="off" lang="en">
+            </div>
+            <div class="modal-footer">
+                <button  class="btn btn-primary dark-blue">Add</button>
+            </div>
+                
+        </div>
+    </div>
+</modal-confirm>

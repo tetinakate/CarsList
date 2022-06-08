@@ -19,42 +19,49 @@ modal-confirm {
         overflow: auto;
 
         .modal-dialog {
-            .modal-confirm-body {
+            .modal-content {
                 padding: 24px;
-                margin: 30px auto;
-                width: 420px;
-                height: 180px;
-                background: #FFFFFF;
-                border: 1px solid #DEE2E6;
-                border-radius: 4px;
-            }
-            .modal-header{
-                border-bottom: none;
-                padding: 24px 24px 22px;
-            }
-            .modal-footer{
-                border-top: none;
-                padding: 0 24px 24px;
-            }
-            .modal-title {
-                color: #152536;
-                font-weight: 700;
-                font-size: 24px;
-            }
-            .modal-body {
-                padding: 0 24px;
-                p {
-                    font-weight: 400;
-                    font-size: 16px;
-                    color: #000000;
+
+                .modal-confirm-body {
+                    padding: 24px;
+                    margin: 30px auto;
+                    width: 420px;
+                    height: 180px;
+                    background: #FFFFFF;
+                    border: 1px solid #DEE2E6;
+                    border-radius: 4px;
                 }
-            }
-            .btn-primary{
-                &.dark-blue{
-                    background-color: #052C65;
-                    &:hover {
-                        background-color: #08387e;
+                .modal-header{
+                    border-bottom: none;
+                    padding: 0 0 24px 0;
+                }
+                .modal-footer{
+                    border-top: none;
+                    padding: 0;
+                }
+                .modal-title {
+                    color: #152536;
+                    font-weight: 700;
+                    font-size: 24px;
+                }
+                .modal-body {
+                    padding: 0;
+                    p {
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: #000000;
                     }
+                }
+                .btn-primary{
+                    &.dark-blue{
+                        background-color: #052C65;
+                        &:hover {
+                            background-color: #08387e;
+                        }
+                    }
+                }
+                .red {
+                    color: red;
                 }
             }
 

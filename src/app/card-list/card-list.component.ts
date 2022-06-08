@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService} from '../http.service';
 import { ModalService } from '../modal';
+import { Car } from '../interfaces';
 
 @Component({
     selector: 'app-card-list',
@@ -9,6 +10,14 @@ import { ModalService } from '../modal';
     providers: [HttpService]
 })
 export class CardListComponent implements OnInit {
+    car: Car = {
+        name: '',
+        model: '',
+        color: '',
+        year: '',
+        image: '',
+    };
+
     @Input() response: any;
     searchText: string = '';
 
@@ -29,7 +38,14 @@ export class CardListComponent implements OnInit {
         this.modalService.open(id);
     }
 
+    openModalNew(id: string) {
+        this.modalService.openNew(id);
+    }
+
     closeModal(id: string) {
         this.modalService.close(id);
+    }
+    onSubmit(car: Car) {
+        this.car = car;
     }
 }

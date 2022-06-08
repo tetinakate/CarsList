@@ -7,9 +7,10 @@ import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { CardItemComponent } from './card-list/card-item/card-item.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { ModalModule } from './modal';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
     declarations: [
@@ -19,8 +20,15 @@ import { ModalModule } from './modal';
         CardListComponent,
         CardItemComponent,
         FilterPipe,
+        FormComponent,
     ],
-    imports: [BrowserModule, HttpClientModule, FormsModule, ModalModule],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ModalModule,
+        ReactiveFormsModule
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })

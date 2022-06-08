@@ -49,6 +49,11 @@ export class ModalComponent implements OnInit, OnDestroy {
         document.body.classList.add('modal-confirm-open');
     }
 
+    openNew(): void {
+        this.element.style.display = 'block';
+        document.body.classList.add('modal-confirm-open');
+    }
+
     // close modal
     close(): void {
         this.element.style.display = 'none';
