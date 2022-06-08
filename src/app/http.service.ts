@@ -11,14 +11,14 @@ export class HttpService{
     getData(): Observable<any> {
         return this.http.get(this.baseUrl).pipe(
             tap(() => console.log('Fetch data ok')),
-            catchError((err) => err)
+            catchError((err: any) => err)
         )
     }
 
     deleteData(id: string): Observable<any> {
         return this.http.delete(`${this.baseUrl}${id}`, {responseType: 'text'}).pipe(
             tap(() => console.log('Delete data ok')),
-            catchError((err) => err)
+            catchError((err: any) => err)
         )
     }
 }

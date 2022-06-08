@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService} from '../http.service';
+import { ModalService } from '../modal';
 
 @Component({
     selector: 'app-card-list',
@@ -9,9 +10,12 @@ import { HttpService} from '../http.service';
 })
 export class CardListComponent implements OnInit {
     @Input() response: any;
-    searchText = '';
+    searchText: string = '';
 
-    constructor(private httpService: HttpService) {}
+    constructor(
+        private httpService: HttpService,
+        private modalService: ModalService
+    ) {}
 
     ngOnInit(): void {}
 
@@ -20,5 +24,12 @@ export class CardListComponent implements OnInit {
         this.httpService.deleteData(id).subscribe()
 
         // this.httpService.getData().subscribe((res: any) => this.response = res)  
+    }
+    openModal(id: string) {
+        this.modalService.open(id);
+    }
+
+    closeModal(id: string) {
+        this.modalService.close(id);
     }
 }

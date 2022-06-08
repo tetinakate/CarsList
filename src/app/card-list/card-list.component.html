@@ -30,11 +30,11 @@
     <div class="row pt-5 card-group">
         <!-- TODO: fix me -->
         <!-- <app-card-item
-      *ngFor="let car of response | appFilter: searchText"
-      [car]="car"
-      class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-      [response]="response"
-    ></app-card-item> -->
+                *ngFor="let car of response | appFilter: searchText"
+                [car]="car"
+                class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+                [response]="response"
+            ></app-card-item> -->
         <!-- TODO: fix me -->
         <div
             *ngFor="let car of response | appFilter: searchText"
@@ -70,13 +70,21 @@
                     <button
                         type="button"
                         class="btn btn-danger"
-                        (click)="handleDeleteClick(car.id)"
+                        (click)="openModal(car.name)"
                     >
                         Delete
                     </button>
+                    <jw-modal id={{car.name}}  class="modal">
+                        <div>{{ car.name }}</div>
+                        <p>Home page text</p>
+                        <button (click)="closeModal(car.name);">Close</button>
+                        <button (click)="handleDeleteClick(car.id)">Delete</button>
+                    </jw-modal>
                 </div>
             </div>
         </div>
         <!-- TODO: fix me -->
     </div>
 </div>
+
+<!-- (click)="handleDeleteClick(car.id)" -->

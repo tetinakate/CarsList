@@ -9,6 +9,7 @@ import { CardListComponent } from './card-list/card-list.component';
 import { CardItemComponent } from './card-list/card-item/card-item.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import { ModalModule } from './modal';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,7 @@ import { FilterPipe } from './filter.pipe';
         CardItemComponent,
         FilterPipe,
     ],
-    imports: [BrowserModule, HttpClientModule, FormsModule],
+    imports: [BrowserModule, HttpClientModule, FormsModule, ModalModule],
     providers: [],
     bootstrap: [AppComponent],
 })
