@@ -17,25 +17,19 @@ export class CardListComponent implements OnInit {
         color: '',
         year: '',
         image: '',
-    };
-
-    items = this.httpService.getData();
-
-  checkoutForm = this.formBuilder.group({
-    name: '',
-    address: ''
-  });
+    }
 
     @Input() response: any;
+    @Input() carModels: any;
     searchText: string = '';
 
     constructor(
         private httpService: HttpService,
-        private modalService: ModalService,
-        private formBuilder: FormBuilder,
+        private modalService: ModalService
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 
     handleDeleteClick(id: string){
         this.response = this.response.filter((res: any) => res.id != id)

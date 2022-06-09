@@ -1,15 +1,20 @@
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="addCar" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label for="name" class="form-label">Name <span class="red">*</span></label>
         <input type="text" formControlName="name" class="form-control" id="name" placeholder="" required autocomplete="off" >
     </div>
     <div class="mb-3">
         <label for="model" class="form-label">Model <span class="red">*</span></label>
-        <select class="form-select" formControlName="model" aria-label="Default select example" id="model">
-            <option selected>Select model</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select
+            class="form-select"
+            formControlName="model"
+            aria-label="Default select example"
+            id="model"
+        >
+            <option
+                *ngFor="let carModel of carModels" [value]="carModel.id">
+                {{ carModel.name }}
+            </option>
         </select>
     </div>
     <div class="mb-3">
@@ -25,6 +30,6 @@
         <input type="file" formControlName="image" class="form-control" id="image" required autocomplete="off" lang="en">
     </div>
     <div class="modal-footer">
-        <button type="submit" [disabled]="!profileForm.valid"  class="btn btn-primary dark-blue">Add</button>
+        <button type="submit" [disabled]="!addCar.valid"  class="btn btn-primary dark-blue">Add</button>
     </div>
 </form>

@@ -25,12 +25,17 @@ export interface ICars {
 export class AppComponent {
     title = 'cars-project';
     response: any;
+    carModels: any;
 
     constructor(private httpService: HttpService) {}
 
     ngOnInit(): void {
         this.httpService.getData().subscribe((response: any) => {
             this.response = response;
+        });
+        this.httpService.getCarsModels().subscribe((carModels: any) => {
+            this.carModels = carModels;
+            console.log(carModels)
         });
     }
 }
