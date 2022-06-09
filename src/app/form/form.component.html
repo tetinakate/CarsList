@@ -4,12 +4,12 @@
         <input type="text" formControlName="name" class="form-control" id="name" placeholder="" required autocomplete="off" >
     </div>
     <div class="mb-3">
-        <label for="model" class="form-label">Model <span class="red">*</span></label>
+        <label for="modelId" class="form-label">Model <span class="red">*</span></label>
         <select
             class="form-select"
-            formControlName="model"
+            formControlName="modelId"
             aria-label="Default select example"
-            id="model"
+            id="modelId"
         >
             <option
                 *ngFor="let carModel of carModels" [value]="carModel.id">
@@ -27,7 +27,15 @@
     </div>
     <div class="mb-3">
         <label for="image" class="form-label">Image <span class="red">*</span></label>
-        <input type="file" formControlName="image" class="form-control" id="image" required autocomplete="off" lang="en">
+        <input
+            type="file"
+            formControlName="image"
+            class="form-control"
+            id="image"
+            required
+            autocomplete="off"
+            (change)="onChange($event)"
+        >
     </div>
     <div class="modal-footer">
         <button type="submit" [disabled]="!addCar.valid"  class="btn btn-primary dark-blue">Add</button>

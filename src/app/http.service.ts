@@ -3,10 +3,27 @@ import {HttpClient} from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
  
+
+// type Car = {
+//     name: any,
+//     modelId: number | undefined | null,
+//     color: any,
+//     year: number | undefined | null,
+//     image: any
+// }
+export interface Car {
+    name: string,
+    modelId: number,
+    color: string,
+    year: number,
+    image: string
+}
+
+
 @Injectable({ providedIn: 'root' })
 export class HttpService{
     constructor(private http: HttpClient){ }
-
+    //car: Car = new Car()
     httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json'
@@ -29,6 +46,7 @@ export class HttpService{
         )
     }
 
+
     getCarsModels(): Observable<any> {
         return this.http.get(`${this.modelsUrl}`).pipe(
             tap(() => console.log('Fetch models ok')),
@@ -36,10 +54,25 @@ export class HttpService{
         )
     }
 
-    addData(values: any): Observable<any> {
-        console.log(values);
+
+
+    addData(
+        name: any,
+        modelId: any,
+        color: any,
+        year: any,
+        image?: any,
+    ): Observable<any> {
+        //console.log(values);
         // return values
-        return this.http.post(this.baseUrl, values, this.httpOptions)
+        const body = {
+            name: name,
+            modelId: modelId,
+            color: color,
+            year: year,
+            image: image,
+        }
+        return this.http.post(this.baseUrl, body, this.httpOptions)
             .pipe(
                 catchError(error => {
                     if (error.status === 401 || error.status === 403) {
