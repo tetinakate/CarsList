@@ -1,4 +1,4 @@
-export interface Car {
+export type Car = {
     name: any;
     model: any;
     color: string;

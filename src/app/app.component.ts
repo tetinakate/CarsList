@@ -7,7 +7,7 @@ type Model = {
     name: string;
 };
 
-export interface ICars {
+type Cars = {
     color: string;
     id: number;
     image: string;
@@ -25,7 +25,6 @@ export interface ICars {
 export class AppComponent {
     title = 'cars-project';
     response: any;
-    countCar: any;
     carModels: any;
 
     constructor(private httpService: HttpService) {}
@@ -33,10 +32,8 @@ export class AppComponent {
     ngOnInit(): void {
         this.httpService.getData().subscribe((response: any) => {
             this.response = response;
-            this.countCar = response.length;
-            console.log('countCar', this.countCar)
         });
-        this.httpService.getCarsModels().subscribe((carModels: any) => {
+        this.httpService.getCarsModels().subscribe((carModels: Model) => {
             this.carModels = carModels;
         })
     }

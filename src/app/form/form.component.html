@@ -38,6 +38,6 @@
         >
     </div>
     <div class="modal-footer">
-        <button type="submit" [disabled]="!formAddCar.valid"  class="btn btn-primary dark-blue">Add</button>
+        <button type="submit" [disabled]="!formAddCar.valid" class="btn btn-primary dark-blue" (click)="onSubmitForm()">Add</button>
     </div>
 </form>

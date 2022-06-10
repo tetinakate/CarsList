@@ -14,10 +14,7 @@ export class CardItemComponent {
     constructor(private httpService: HttpService) {}
 
     handleDeleteClick(id: string){
-        console.log(this.response)
         this.response = this.response.filter((res: any) => res.id != id)
         this.httpService.deleteData(id).subscribe()
-
-        // this.httpService.getData().subscribe((res: any) => this.response = res)  
     }
 }

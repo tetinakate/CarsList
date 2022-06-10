@@ -52,7 +52,6 @@ export class HttpService{
     }
 
     updateData(id: string, values: any): Observable<any> {
-        console.log(values);
         return values
     }
 

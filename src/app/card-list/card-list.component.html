@@ -107,7 +107,7 @@
             <div class="modal-header">
                 <h5 class="modal-title">Add new car</h5>
             </div>
-            <form-editor [carModels]="carModels"></form-editor>
+            <form-editor [carModels]="carModels" (submitForm)="onSubmitForm('add-new-car')" [response]="response"></form-editor>
         </div>
     </div>
 </modal-confirm>
