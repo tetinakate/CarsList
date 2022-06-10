@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Observable, Subscriber } from 'rxjs';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpService } from '../http.service';
 
 @Component({
@@ -11,58 +10,43 @@ import { HttpService } from '../http.service';
 export class FormComponent {
     @Input() car: any;
     @Input() carModels: any;
+    @Input() response: any;
     @Output() submitted = new EventEmitter<any>();
 
     imgCar!: any;
     base64code!: any;
+    formAddCar: any = FormGroup;
 
-
-    addCar = new FormGroup({
-        name: new FormControl(''),
-        modelId: new FormControl(''),
-        color: new FormControl(''),
-        year: new FormControl(''),
-        image: new FormControl(''),
-    });
-
-    constructor(private httpService: HttpService) {}
-
+    constructor(
+        private formBuilder: FormBuilder,
+        private httpService: HttpService,
+    ) {}
+    ngOnInit() {  
+        this.formAddCar = this.formBuilder.group({   
+            name: [''],     
+            modelId: [''],       
+            color: [''],       
+            year: [''],   
+            image: [null]
+       })
+    }
     onChange = ($event: Event) => {
         const target = $event.target as HTMLInputElement;
         const file: File = (target.files as FileList)[0];
-        this.convertToBase64(file);
-    }
-    convertToBase64(file: File) {
-        const observable = new Observable((subscriber: Subscriber<any>) => {
-            this.readFile(file, subscriber)
-        });
-
-        observable.subscribe((d) => {
-            this.imgCar = d;
-            this.base64code = d;
-        })
-    }
-    readFile(file: File, subscriber: Subscriber<any>) {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = () => {
-            subscriber.next(fileReader.result);
-            subscriber.complete();
-        };
-        fileReader.onerror = () => {
-            subscriber.error();
-            subscriber.complete();
-        }
+        this.imgCar = file;
     }
 
     onSubmit() {
-        let { name, modelId, color, year, image } = this.addCar.value
-        let Model = Number(modelId);
-        let Year = Number(year);
-        
-        this.httpService.addData(name, Model, color, Year, this.imgCar).subscribe((result) => {
-            console.warn(this.addCar.value);
-            this.addCar.reset();
+        let formData: any = new FormData();
+        formData.append('name', this.formAddCar.get('name')?.value)
+        formData.append('modelId', this.formAddCar.get('modelId')?.value)
+        formData.append('color', this.formAddCar.get('color')?.value)
+        formData.append('year', this.formAddCar.get('year')?.value)
+        formData.append('image', this.imgCar)   
+
+        this.httpService.addData(formData).subscribe(() => {
+            this.formAddCar.reset();
         });
+        
     }
 }
