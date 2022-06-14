@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
     selector: 'app-search',
@@ -7,14 +6,17 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-    @Output() filterText = new EventEmitter<string>();
+
+    //@Input() filterText: any;
+    @Output() changeSearch = new EventEmitter<string>();
+    outputText : string = '';
 
     response: any;
 
-    constructor(private http: HttpClient) {}
+    constructor() {}
 
-    addNewItem(value: string) {
-        this.filterText.emit(value);
+    onChangeSearch(value: any) {
+        this.changeSearch.emit(value);
     }
 
     ngOnInit(): void {}

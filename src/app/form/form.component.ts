@@ -9,7 +9,6 @@ import { ModalService } from '../modal';
     styleUrls: ['./form.component.scss'],
 })
 export class FormComponent {
-    @Input() car: any;
     @Input() carModels: any;
     @Input() response: any;
 
@@ -17,12 +16,14 @@ export class FormComponent {
 
     imgCar!: any;
     formAddCar: any = FormGroup;
+    selectedModel: any;
 
     constructor(
         private formBuilder: FormBuilder,
         private httpService: HttpService,
         private modalService: ModalService
     ) {}
+
     ngOnInit() {
         this.formAddCar = this.formBuilder.group({
             name: [''],
@@ -32,6 +33,7 @@ export class FormComponent {
             image: [null],
         });
     }
+
     onChange = ($event: Event) => {
         const target = $event.target as HTMLInputElement;
         const file: File = (target.files as FileList)[0];
@@ -41,6 +43,7 @@ export class FormComponent {
     closeModalAdd(id: string) {
         this.modalService.close(id);
     }
+
     onSubmitForm() {
         this.submitForm.emit();
     }

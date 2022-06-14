@@ -7,9 +7,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4">
-            <!-- TODO: fix me -->
-            <!-- <app-search></app-search> -->
+        <div class="col col-lg-4 col-md-4 col-sm-4">
             <input
                 type="search"
                 class="form-control"
@@ -18,9 +16,10 @@
                 [(ngModel)]="searchText"
                 autocomplete="off"
             />
+
         </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-8 text-end">
+        <div class="col col-lg-8 col-md-8 col-sm-8 text-end">
             <button
                 type="button"
                 class="btn btn-success btn-add-car"
@@ -32,23 +31,15 @@
     </div>
 
     <div class="row pt-5 card-group">
-        <!-- TODO: fix me -->
-        <!-- <app-card-item
-                *ngFor="let car of response | appFilter: searchText"
-                [car]="car"
-                class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-                [response]="response"
-            ></app-card-item> -->
-        <!-- TODO: fix me -->
         <div
             *ngFor="let car of response | appFilter: searchText"
             class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
         >
             <div class="card mb-2">
                 <img
-                    src="http://localhost:3000/images/{{ car.image }}"
+                    src="{{url}}{{ car.image }}"
                     class="card-img-top"
-                    alt="ffff"
+                    alt="{{ car.name }}"
                 />
                 <div class="card-body">
                     <h5 class="card-title">{{ car.name }}</h5>
@@ -68,40 +59,26 @@
                     </li>
                 </ul>
                 <div class="card-body">
-                    <button type="button" class="btn btn-secondary me-3">
-                        Update
-                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary me-3"
+                        (click)="updateCar(car)"
+                        data-bs-toggle="modal" data-bs-target="#upDateModal"
+                    >Update</button>
                     <button
                         type="button"
                         class="btn btn-danger"
-                        (click)="openModal(car.name)"
-                    >
-                        Delete
-                    </button>
-                    <modal-confirm id={{car.name}} class="modal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">{{ car.name }}</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you sure you want to delete this car?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button (click)="closeModal(car.name);" class="btn btn-secondary">Cansel</button>
-                                    <button (click)="handleDeleteClick(car.id)" class="btn btn-primary dark-blue">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </modal-confirm>
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteCar"
+                        (click)="deleteThisCar(car);"
+                    >Delete</button>
                 </div>
             </div>
         </div>
-        <!-- TODO: fix me -->
     </div>
 </div>
 
-<modal-confirm id="add-new-car" class="modal">
+<modal-confirm class="modal fade" id="add-new-car" class="modal" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -111,3 +88,93 @@
         </div>
     </div>
 </modal-confirm>
+
+<div class="modal fade" id="deleteCar" tabindex="-1" aria-labelledby="deleteCarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteCarLabel">Delete {{ carToDelete.name }}</h5>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this car?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button
+                    type="button"
+                    class="btn btn-primary dark-blue"
+                    (click)="handleDeleteClick(carToDelete.id)"
+                    data-bs-dismiss="modal"
+                >Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="upDateModal" tabindex="-1" aria-labelledby="upDateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update {{carToEdit.name}}</h5>
+        </div>
+        <div class="modal-body">
+            <form #updateForm="ngForm" (ngSubmit)="onUpdateCar(updateForm)" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name <span class="red">*</span></label>
+                    <input type="text" #name [(ngModel)]="carToEdit.name" name="name" class="form-control" id="name" placeholder="" required autocomplete="off" >
+                </div>
+                <div class="mb-3">
+                    <label for="model" class="form-label">Model <span class="red">*</span></label>
+                    <select
+                        class="form-select"
+                        #modelId [(ngModel)]="carToEdit.model.id" name="modelId"
+                        aria-label="Default select example"
+                        id="modelId"
+                    >
+                        <option
+                            *ngFor="let carModel of carModels" [value]="carModel.id">
+                            {{ carModel.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="color" class="form-label">Color <span class="red">*</span></label>
+                    <input type="text" #color [(ngModel)]="carToEdit.color" name="color" class="form-control" id="color" placeholder="" required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="year" class="form-label">Year <span class="red">*</span></label>
+                    <input type="number" #year [(ngModel)]="carToEdit.year" name="year" class="form-control" id="year" placeholder="" required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image <span class="red">*</span></label>
+                    <input
+                        type="file"
+                        name="image"
+                        #fileInput
+                        class="form-control"
+                        id="image"
+                        required
+                        autocomplete="off"
+                        style="display:none;"
+                        (change)="onUpdateImage($event)"
+                    >
+                    <div class="browse-file">
+                        <input
+                            type="text"
+                            #image
+                            [(ngModel)]="carToEdit.image.name || carToEdit.image"
+                            name="image"
+                            class="form-control"
+                            (click)="fileInput.click()"
+                        />
+                        <button class="btn browse" (click)="fileInput.click()">Browse</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary dark-blue" data-bs-dismiss="modal">Save</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

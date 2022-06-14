@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
  
@@ -51,8 +51,11 @@ export class HttpService{
             )
     }
 
-    updateData(id: string, values: any): Observable<any> {
-        return values
+    updateData(value: any): Observable<any> {
+        return this.http.put(this.baseUrl, value)
+        .pipe(
+            catchError(error => throwError(() => error))
+        )
     }
 
     deleteData(id: string): Observable<any> {
