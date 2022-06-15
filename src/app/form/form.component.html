@@ -1,7 +1,19 @@
 <form [formGroup]="formAddCar" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Name <span class="red">*</span></label>
-        <input type="text" formControlName="name" class="form-control" id="name" placeholder="" required autocomplete="off" >
+        <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            id="name"
+            placeholder=""
+            required
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+        >
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+        </div>
     </div>
     <div class="mb-3">
         <label for="modelId" class="form-label">Model <span class="red">*</span></label>
@@ -10,20 +22,50 @@
             formControlName="modelId"
             aria-label="Default select example"
             id="modelId"
+            [ngClass]="{ 'is-invalid': submitted && f.modelId.errors }"
         >
             <option
                 *ngFor="let carModel of carModels" [value]="carModel.id">
                 {{ carModel.name }}
             </option>
         </select>
+        <div *ngIf="submitted && f.modelId.errors" class="invalid-feedback">
+            <div *ngIf="f.modelId.errors.required">Model is required</div>
+        </div>
     </div>
     <div class="mb-3">
         <label for="color" class="form-label">Color <span class="red">*</span></label>
-        <input type="text" formControlName="color" class="form-control" id="color" placeholder="" required autocomplete="off">
+        <input
+            type="text"
+            formControlName="color"
+            class="form-control"
+            id="color"
+            placeholder=""
+            required autocomplete="off"
+            [ngClass]="{ 'is-invalid': submitted && f.color.errors }"
+        >
+        <div *ngIf="submitted && f.color.errors" class="invalid-feedback">
+            <div *ngIf="f.color.errors.required">Color is required</div>
+        </div>
     </div>
     <div class="mb-3">
         <label for="year" class="form-label">Year <span class="red">*</span></label>
-        <input type="number" formControlName="year" class="form-control" id="year" placeholder="" required autocomplete="off">
+        <input
+            type="text"
+            formControlName="year"
+            class="form-control"
+            id="year"
+            placeholder=""
+            maxLength="4"
+            minLength="4"
+            required
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid': submitted && f.year.errors }"
+        >
+        <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
+            <div *ngIf="f.year.errors.required">Year is required</div>
+            <div *ngIf="f.year.errors.minlength">Year must be at least 4 characters</div>
+        </div>
     </div>
     <div class="mb-3">
         <label for="image" class="form-label">Image <span class="red">*</span></label>
@@ -35,14 +77,17 @@
             required
             autocomplete="off"
             (change)="onChange($event)"
+            [ngClass]="{ 'is-invalid': submitted && f.image.errors }"
         >
+        <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+            <div *ngIf="f.image.errors.required">Image is required</div>
+        </div>
     </div>
     <div class="modal-footer">
         <button
             type="submit"
-            [disabled]="!formAddCar.valid"
             class="btn btn-primary dark-blue"
-            (click)="onSubmitForm()"
+            
         >Add</button>
     </div>
 </form>

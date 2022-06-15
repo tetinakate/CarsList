@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpService } from '../http.service';
 import { ModalService } from '../modal';
 
@@ -17,6 +17,7 @@ export class FormComponent {
     imgCar!: any;
     formAddCar: any = FormGroup;
     selectedModel: any;
+    submitted: boolean = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -26,12 +27,15 @@ export class FormComponent {
 
     ngOnInit() {
         this.formAddCar = this.formBuilder.group({
-            name: [''],
-            modelId: [''],
-            color: [''],
-            year: [''],
-            image: [null],
+            name: ['', Validators.required],
+            modelId: ['', Validators.required],
+            color: ['', Validators.required],
+            year: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]],
+            image: [null, Validators.required],
         });
+    }
+    get f() {
+        return this.formAddCar.controls;
     }
 
     onChange = ($event: Event) => {
@@ -44,11 +48,12 @@ export class FormComponent {
         this.modalService.close(id);
     }
 
-    onSubmitForm() {
-        this.submitForm.emit();
-    }
-
     onSubmit() {
+        this.submitted = true;
+        if (this.formAddCar.invalid) {
+            return;
+        }
+
         let formData: any = new FormData();
         formData.append('name', this.formAddCar.get('name')?.value);
         formData.append('modelId', this.formAddCar.get('modelId')?.value);
@@ -60,5 +65,7 @@ export class FormComponent {
             this.response.push(result);
             this.formAddCar.reset();
         })
+        
+        this.submitForm.emit();
     }
 }
